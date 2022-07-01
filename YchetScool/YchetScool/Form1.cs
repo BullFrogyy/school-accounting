@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using SD=System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Data.OleDb;
+using SD = System.Data;
 using System.Data;
 using Word = Microsoft.Office.Interop.Word;
-using exel = Microsoft.Office.Interop.Excel;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -22,7 +14,7 @@ namespace YchetScool
         public MySqlConnection mycon;
         public MySqlCommand nycon;
         public string connect = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-        public SD.DataSet ds;
+        public DataSet ds;
         public string value1;
         public string value2;
         public string value3;
@@ -35,8 +27,6 @@ namespace YchetScool
         public Form1()
         {
             InitializeComponent();
-
-
         }
 
         public Autorization Autorization
@@ -60,9 +50,9 @@ namespace YchetScool
                 MessageBox.Show("BD Connect");
 
             }
-            catch
+            catch(Exception exception)
             {
-                MessageBox.Show("Connection lost");
+                MessageBox.Show($"{exception}: ERROR:341:Connection lost");
             }
             const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
             DataTable patientTable = new DataTable();
@@ -94,7 +84,9 @@ namespace YchetScool
         {
             try
             {
-                string script = "Select student.ID as Номер,student.FIO as ФИО,student.GenderType as Пол,class.Class as Класс,student.Address as Адрес,student.DateOFBirth as Дата_рождения,student.Email as Почта,student.Benefits as Льготы,student.Phone as Телефон from student join Class on Student.Class = class.ID";
+                string script = "Select student.ID as Номер,student.FIO as ФИО,student.GenderType as Пол,class.Class as " +
+                    "Класс,student.Address as Адрес,student.DateOFBirth as Дата_рождения,student.Email as Почта,student.Benefits as Льготы,student.Phone as" +
+                    " Телефон from student join Class on Student.Class = class.ID";
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);

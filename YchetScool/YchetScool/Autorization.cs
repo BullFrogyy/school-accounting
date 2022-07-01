@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -13,6 +7,8 @@ namespace YchetScool
 {
     public partial class Autorization : Form
     {
+        DB db;
+        DataTable table;
         public Autorization()
         {
             InitializeComponent();
@@ -25,13 +21,16 @@ namespace YchetScool
 
         private void button1_Click(object sender, EventArgs e)
         {
-         
+            Verfly();
+        }
+
+        private void Verfly()
+        {
             String loginUser = loginField.Text;
             String passUser = passField.Text;
 
-            DB db = new DB();
-
-            DataTable table = new DataTable();
+            db = new DB();
+            table = new DataTable();
 
             MySqlDataAdapter adapter = new MySqlDataAdapter();
 
@@ -50,11 +49,6 @@ namespace YchetScool
             }
             else
                 MessageBox.Show("Ошибка! Не верно введени пароль или логин!");
-        }
-
-        private void loginField_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
