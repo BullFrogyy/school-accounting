@@ -7,6 +7,7 @@ namespace YchetScool
 {
     public partial class Autorization : Form
     {
+        private const string CMD_TEXT = "SELECT * FROM users WHERE Login = @uL AND Password = @uP";
         private Autorizator _autoriazator;
         private DataTable _table;
         private MySqlDataAdapter _adapter;
@@ -35,7 +36,7 @@ namespace YchetScool
 
         private void Verification()
         {
-            MySqlCommand command = new MySqlCommand("SELECT * FROM users WHERE Login = @uL AND Password = @uP", _autoriazator.GetConnection());
+            MySqlCommand command = new MySqlCommand(CMD_TEXT, _autoriazator.GetConnection());
             command.Parameters.Add("@uL", MySqlDbType.VarChar).Value = _login;
             command.Parameters.Add("@uP", MySqlDbType.VarChar).Value = _password;
             _adapter.SelectCommand = command;
@@ -51,6 +52,5 @@ namespace YchetScool
             Hide();
             form.Show();
         }
-
     }
 }
