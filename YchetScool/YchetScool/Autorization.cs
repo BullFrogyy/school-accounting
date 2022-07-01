@@ -7,48 +7,50 @@ namespace YchetScool
 {
     public partial class Autorization : Form
     {
-        DB db;
-        DataTable table;
+        private Autorizator _autoriazator;
+        private DataTable _table;
+        private MySqlDataAdapter _adapter;
+        private string _login;
+        private string _password;
+
         public Autorization()
         {
             InitializeComponent();
+            Initialization();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void Initialization()
         {
-
+            _autoriazator = new Autorizator();
+            _table = new DataTable();
+            _adapter = new MySqlDataAdapter();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Verfly();
+            Verification();
+            _login = loginField.Text;
+            _password = passwordField.Text;
         }
 
-        private void Verfly()
+        private void Verification()
         {
-            String loginUser = loginField.Text;
-            String passUser = passField.Text;
-
-            db = new DB();
-            table = new DataTable();
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-
-            MySqlCommand command = new MySqlCommand("SELECT * FROM users WHERE Login = @uL AND Password = @uP", db.GetConnection());
-            command.Parameters.Add("@uL", MySqlDbType.VarChar).Value = loginUser;
-            command.Parameters.Add("@uP", MySqlDbType.VarChar).Value = passUser;
-
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
-
-            if (table.Rows.Count > 0)
-            {
-                this.Hide();
-                Form1 m = new Form1();
-                m.Show();
-            }
+            MySqlCommand command = new MySqlCommand("SELECT * FROM users WHERE Login = @uL AND Password = @uP", _autoriazator.GetConnection());
+            command.Parameters.Add("@uL", MySqlDbType.VarChar).Value = _login;
+            command.Parameters.Add("@uP", MySqlDbType.VarChar).Value = _password;
+            _adapter.SelectCommand = command;
+            _adapter.Fill(_table);
+            if (_table.Rows.Count > 0)
+                OpenForm(new DatabaseViewer());
             else
                 MessageBox.Show("Ошибка! Не верно введени пароль или логин!");
         }
+
+        private void OpenForm(Form form) 
+        {
+            Hide();
+            form.Show();
+        }
+
     }
 }

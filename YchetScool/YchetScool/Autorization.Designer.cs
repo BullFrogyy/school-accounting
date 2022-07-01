@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Autorization));
             this.button1 = new System.Windows.Forms.Button();
             this.loginField = new System.Windows.Forms.TextBox();
-            this.passField = new System.Windows.Forms.TextBox();
+            this.passwordField = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,12 +58,12 @@
             // 
             // passField
             // 
-            this.passField.Location = new System.Drawing.Point(95, 119);
-            this.passField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.passField.Name = "passField";
-            this.passField.Size = new System.Drawing.Size(155, 20);
-            this.passField.TabIndex = 2;
-            this.passField.UseSystemPasswordChar = true;
+            this.passwordField.Location = new System.Drawing.Point(95, 119);
+            this.passwordField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passwordField.Name = "passField";
+            this.passwordField.Size = new System.Drawing.Size(155, 20);
+            this.passwordField.TabIndex = 2;
+            this.passwordField.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -95,7 +95,6 @@
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Пароль";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Autorization
             // 
@@ -105,7 +104,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.passField);
+            this.Controls.Add(this.passwordField);
             this.Controls.Add(this.loginField);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -121,7 +120,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox loginField;
-        private System.Windows.Forms.TextBox passField;
+        private System.Windows.Forms.TextBox passwordField;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

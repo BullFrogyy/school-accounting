@@ -2,9 +2,11 @@
 
 namespace YchetScool
 {
-    class DB
+    class Autorizator
     {
+
         private MySqlConnection _connection = new MySqlConnection("Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8");
+        public MySqlConnection GetConnection() => _connection;
 
         private void OpenConnection()
         {
@@ -17,9 +19,6 @@ namespace YchetScool
                 _connection.Close();
         }
 
-        public MySqlConnection GetConnection()
-        {
-            return _connection;
-        }
+
     }
 }
