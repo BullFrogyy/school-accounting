@@ -998,7 +998,7 @@
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 30;
             this.label3.Text = "Редактирование";
-            this.label3.UseWaitCursor = true;;
+            this.label3.UseWaitCursor = true;
             // 
             // textBox13
             // 
