@@ -414,7 +414,7 @@
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(475, 195);
             this.dataGridView4.TabIndex = 32;
-            this.dataGridView4.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView4_RowHeaderMouseClick);
+            this.dataGridView4.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView4_RowHeaderMouseClick);
             // 
             // button11
             // 
@@ -2451,14 +2451,14 @@
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.AboutTheProgremmToolStripMenuItemClick);
             // 
             // руководствоПользователяToolStripMenuItem
             // 
             this.руководствоПользователяToolStripMenuItem.Name = "руководствоПользователяToolStripMenuItem";
             this.руководствоПользователяToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.руководствоПользователяToolStripMenuItem.Text = "Руководство пользователя";
-            this.руководствоПользователяToolStripMenuItem.Click += new System.EventHandler(this.руководствоПользователяToolStripMenuItem_Click);
+            this.руководствоПользователяToolStripMenuItem.Click += new System.EventHandler(this.UsersManualToolStripMenuItemClick);
             // 
             // dateTimePicker7
             // 
