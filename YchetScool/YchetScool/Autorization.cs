@@ -27,15 +27,15 @@ namespace YchetScool
             _adapter = new MySqlDataAdapter();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SingInButton(object sender, EventArgs e)
         {
             Verification();
-            _login = loginField.Text;
-            _password = passwordField.Text;
         }
 
         private void Verification()
         {
+            _login = loginField.Text;
+            _password = passwordField.Text;
             MySqlCommand command = new MySqlCommand(CMD_TEXT, _autoriazator.GetConnection());
             command.Parameters.Add("@uL", MySqlDbType.VarChar).Value = _login;
             command.Parameters.Add("@uP", MySqlDbType.VarChar).Value = _password;

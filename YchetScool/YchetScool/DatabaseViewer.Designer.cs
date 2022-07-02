@@ -223,6 +223,7 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.руководствоПользователяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateTimePicker7 = new System.Windows.Forms.DateTimePicker();
             this.tabPage4.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
@@ -266,7 +267,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Подключение к БД";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.ConnectionDatabaseClick);
             // 
             // tabPage4
             // 
@@ -529,7 +530,7 @@
             this.textBox57.Location = new System.Drawing.Point(148, 79);
             this.textBox57.Margin = new System.Windows.Forms.Padding(2);
             this.textBox57.Name = "textBox57";
-            this.textBox57.Size = new System.Drawing.Size(76, 20);
+            this.textBox57.Size = new System.Drawing.Size(123, 20);
             this.textBox57.TabIndex = 41;
             this.textBox57.UseWaitCursor = true;
             // 
@@ -538,7 +539,7 @@
             this.textBox56.Location = new System.Drawing.Point(148, 56);
             this.textBox56.Margin = new System.Windows.Forms.Padding(2);
             this.textBox56.Name = "textBox56";
-            this.textBox56.Size = new System.Drawing.Size(76, 20);
+            this.textBox56.Size = new System.Drawing.Size(123, 20);
             this.textBox56.TabIndex = 40;
             this.textBox56.UseWaitCursor = true;
             // 
@@ -866,7 +867,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(152, 251);
+            this.textBox2.Location = new System.Drawing.Point(157, 251);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(76, 20);
@@ -877,10 +878,10 @@
             // comboBox24
             // 
             this.comboBox24.FormattingEnabled = true;
-            this.comboBox24.Location = new System.Drawing.Point(137, 90);
+            this.comboBox24.Location = new System.Drawing.Point(157, 90);
             this.comboBox24.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox24.Name = "comboBox24";
-            this.comboBox24.Size = new System.Drawing.Size(43, 21);
+            this.comboBox24.Size = new System.Drawing.Size(52, 21);
             this.comboBox24.TabIndex = 110;
             // 
             // comboBox25
@@ -889,16 +890,17 @@
             this.comboBox25.Location = new System.Drawing.Point(104, 90);
             this.comboBox25.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox25.Name = "comboBox25";
-            this.comboBox25.Size = new System.Drawing.Size(30, 21);
+            this.comboBox25.Size = new System.Drawing.Size(49, 21);
             this.comboBox25.TabIndex = 109;
             this.comboBox25.SelectedIndexChanged += new System.EventHandler(this.comboBox25_SelectedIndexChanged);
             // 
             // dateTimePicker13
             // 
+            this.dateTimePicker13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker13.Location = new System.Drawing.Point(104, 135);
             this.dateTimePicker13.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker13.Name = "dateTimePicker13";
-            this.dateTimePicker13.Size = new System.Drawing.Size(105, 20);
+            this.dateTimePicker13.Size = new System.Drawing.Size(105, 18);
             this.dateTimePicker13.TabIndex = 102;
             // 
             // label138
@@ -992,7 +994,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(82, 27);
+            this.label3.Location = new System.Drawing.Point(101, 28);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 13);
@@ -1005,7 +1007,7 @@
             this.textBox13.Location = new System.Drawing.Point(104, 43);
             this.textBox13.Margin = new System.Windows.Forms.Padding(2);
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(76, 20);
+            this.textBox13.Size = new System.Drawing.Size(105, 20);
             this.textBox13.TabIndex = 29;
             this.textBox13.UseWaitCursor = true;
             // 
@@ -1014,7 +1016,7 @@
             this.textBox14.Location = new System.Drawing.Point(104, 66);
             this.textBox14.Margin = new System.Windows.Forms.Padding(2);
             this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(76, 20);
+            this.textBox14.Size = new System.Drawing.Size(105, 20);
             this.textBox14.TabIndex = 28;
             this.textBox14.UseWaitCursor = true;
             // 
@@ -1023,7 +1025,7 @@
             this.textBox16.Location = new System.Drawing.Point(104, 111);
             this.textBox16.Margin = new System.Windows.Forms.Padding(2);
             this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(76, 20);
+            this.textBox16.Size = new System.Drawing.Size(105, 20);
             this.textBox16.TabIndex = 26;
             this.textBox16.UseWaitCursor = true;
             // 
@@ -1032,7 +1034,7 @@
             this.textBox18.Location = new System.Drawing.Point(104, 157);
             this.textBox18.Margin = new System.Windows.Forms.Padding(2);
             this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(76, 20);
+            this.textBox18.Size = new System.Drawing.Size(105, 20);
             this.textBox18.TabIndex = 24;
             this.textBox18.UseWaitCursor = true;
             // 
@@ -1041,7 +1043,7 @@
             this.textBox19.Location = new System.Drawing.Point(104, 181);
             this.textBox19.Margin = new System.Windows.Forms.Padding(2);
             this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(76, 20);
+            this.textBox19.Size = new System.Drawing.Size(105, 20);
             this.textBox19.TabIndex = 23;
             this.textBox19.UseWaitCursor = true;
             // 
@@ -1050,7 +1052,7 @@
             this.textBox20.Location = new System.Drawing.Point(104, 206);
             this.textBox20.Margin = new System.Windows.Forms.Padding(2);
             this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(76, 20);
+            this.textBox20.Size = new System.Drawing.Size(105, 20);
             this.textBox20.TabIndex = 22;
             this.textBox20.UseWaitCursor = true;
             // 
@@ -1474,21 +1476,22 @@
             this.comboBox37.Location = new System.Drawing.Point(178, 55);
             this.comboBox37.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox37.Name = "comboBox37";
-            this.comboBox37.Size = new System.Drawing.Size(35, 21);
+            this.comboBox37.Size = new System.Drawing.Size(105, 21);
             this.comboBox37.TabIndex = 107;
             // 
             // dateTimePicker8
             // 
+            this.dateTimePicker8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker8.Location = new System.Drawing.Point(178, 34);
             this.dateTimePicker8.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker8.Name = "dateTimePicker8";
-            this.dateTimePicker8.Size = new System.Drawing.Size(105, 20);
+            this.dateTimePicker8.Size = new System.Drawing.Size(105, 18);
             this.dateTimePicker8.TabIndex = 98;
             // 
             // label148
             // 
             this.label148.AutoSize = true;
-            this.label148.Location = new System.Drawing.Point(14, 171);
+            this.label148.Location = new System.Drawing.Point(86, 170);
             this.label148.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label148.Name = "label148";
             this.label148.Size = new System.Drawing.Size(88, 13);
@@ -1499,10 +1502,11 @@
             // dateTimePicker4
             // 
             this.dateTimePicker4.CustomFormat = "yyyy-MM-dd";
-            this.dateTimePicker4.Location = new System.Drawing.Point(104, 167);
+            this.dateTimePicker4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker4.Location = new System.Drawing.Point(178, 170);
             this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(151, 20);
+            this.dateTimePicker4.Size = new System.Drawing.Size(105, 18);
             this.dateTimePicker4.TabIndex = 95;
             this.dateTimePicker4.Value = new System.DateTime(2022, 3, 5, 0, 0, 0, 0);
             this.dateTimePicker4.ValueChanged += new System.EventHandler(this.dateTimePicker4_ValueChanged);
@@ -1578,7 +1582,7 @@
             this.textBox119.Location = new System.Drawing.Point(178, 146);
             this.textBox119.Margin = new System.Windows.Forms.Padding(2);
             this.textBox119.Name = "textBox119";
-            this.textBox119.Size = new System.Drawing.Size(76, 20);
+            this.textBox119.Size = new System.Drawing.Size(105, 20);
             this.textBox119.TabIndex = 79;
             this.textBox119.TextChanged += new System.EventHandler(this.textBox119_TextChanged);
             // 
@@ -1587,7 +1591,7 @@
             this.textBox40.Location = new System.Drawing.Point(178, 124);
             this.textBox40.Margin = new System.Windows.Forms.Padding(2);
             this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(76, 20);
+            this.textBox40.Size = new System.Drawing.Size(105, 20);
             this.textBox40.TabIndex = 74;
             this.textBox40.UseWaitCursor = true;
             // 
@@ -1596,7 +1600,7 @@
             this.textBox39.Location = new System.Drawing.Point(178, 101);
             this.textBox39.Margin = new System.Windows.Forms.Padding(2);
             this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(76, 20);
+            this.textBox39.Size = new System.Drawing.Size(105, 20);
             this.textBox39.TabIndex = 73;
             this.textBox39.UseWaitCursor = true;
             // 
@@ -1605,7 +1609,7 @@
             this.textBox38.Location = new System.Drawing.Point(178, 78);
             this.textBox38.Margin = new System.Windows.Forms.Padding(2);
             this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(76, 20);
+            this.textBox38.Size = new System.Drawing.Size(105, 20);
             this.textBox38.TabIndex = 72;
             this.textBox38.UseWaitCursor = true;
             // 
@@ -1779,7 +1783,7 @@
             this.textBox120.Location = new System.Drawing.Point(110, 80);
             this.textBox120.Margin = new System.Windows.Forms.Padding(2);
             this.textBox120.Name = "textBox120";
-            this.textBox120.Size = new System.Drawing.Size(76, 20);
+            this.textBox120.Size = new System.Drawing.Size(121, 20);
             this.textBox120.TabIndex = 79;
             this.textBox120.TextChanged += new System.EventHandler(this.textBox120_TextChanged);
             // 
@@ -1864,6 +1868,7 @@
             this.groupBox6.Controls.Add(this.comboBox21);
             this.groupBox6.Controls.Add(this.comboBox16);
             this.groupBox6.Controls.Add(this.comboBox17);
+            this.groupBox6.Controls.Add(this.dateTimePicker7);
             this.groupBox6.Controls.Add(this.dateTimePicker10);
             this.groupBox6.Controls.Add(this.label149);
             this.groupBox6.Controls.Add(this.dateTimePicker5);
@@ -1890,7 +1895,7 @@
             this.button14.Location = new System.Drawing.Point(165, 158);
             this.button14.Margin = new System.Windows.Forms.Padding(2);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(106, 28);
+            this.button14.Size = new System.Drawing.Size(132, 28);
             this.button14.TabIndex = 109;
             this.button14.Text = "Экспорт в Exel";
             this.button14.UseVisualStyleBackColor = true;
@@ -1902,7 +1907,7 @@
             this.comboBox20.Location = new System.Drawing.Point(198, 124);
             this.comboBox20.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox20.Name = "comboBox20";
-            this.comboBox20.Size = new System.Drawing.Size(89, 21);
+            this.comboBox20.Size = new System.Drawing.Size(99, 21);
             this.comboBox20.TabIndex = 108;
             // 
             // comboBox21
@@ -1921,7 +1926,7 @@
             this.comboBox16.Location = new System.Drawing.Point(198, 32);
             this.comboBox16.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox16.Name = "comboBox16";
-            this.comboBox16.Size = new System.Drawing.Size(89, 21);
+            this.comboBox16.Size = new System.Drawing.Size(99, 21);
             this.comboBox16.TabIndex = 104;
             // 
             // comboBox17
@@ -1937,7 +1942,7 @@
             // dateTimePicker10
             // 
             this.dateTimePicker10.CustomFormat = "yyyy-MM-dd";
-            this.dateTimePicker10.Location = new System.Drawing.Point(166, 55);
+            this.dateTimePicker10.Location = new System.Drawing.Point(165, 56);
             this.dateTimePicker10.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker10.Name = "dateTimePicker10";
             this.dateTimePicker10.Size = new System.Drawing.Size(131, 20);
@@ -1961,7 +1966,7 @@
             this.dateTimePicker5.Location = new System.Drawing.Point(165, 214);
             this.dateTimePicker5.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker5.Name = "dateTimePicker5";
-            this.dateTimePicker5.Size = new System.Drawing.Size(151, 20);
+            this.dateTimePicker5.Size = new System.Drawing.Size(132, 20);
             this.dateTimePicker5.TabIndex = 97;
             this.dateTimePicker5.Value = new System.DateTime(2022, 3, 5, 0, 0, 0, 0);
             this.dateTimePicker5.ValueChanged += new System.EventHandler(this.dateTimePicker5_ValueChanged);
@@ -2037,25 +2042,25 @@
             this.textBox121.Location = new System.Drawing.Point(165, 191);
             this.textBox121.Margin = new System.Windows.Forms.Padding(2);
             this.textBox121.Name = "textBox121";
-            this.textBox121.Size = new System.Drawing.Size(76, 20);
+            this.textBox121.Size = new System.Drawing.Size(132, 20);
             this.textBox121.TabIndex = 79;
             this.textBox121.TextChanged += new System.EventHandler(this.textBox121_TextChanged);
             // 
             // textBox21
             // 
-            this.textBox21.Location = new System.Drawing.Point(166, 77);
+            this.textBox21.Location = new System.Drawing.Point(165, 76);
             this.textBox21.Margin = new System.Windows.Forms.Padding(2);
             this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(76, 20);
+            this.textBox21.Size = new System.Drawing.Size(131, 20);
             this.textBox21.TabIndex = 68;
             this.textBox21.UseWaitCursor = true;
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(166, 100);
+            this.textBox11.Location = new System.Drawing.Point(165, 100);
             this.textBox11.Margin = new System.Windows.Forms.Padding(2);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(76, 20);
+            this.textBox11.Size = new System.Drawing.Size(131, 20);
             this.textBox11.TabIndex = 69;
             this.textBox11.UseWaitCursor = true;
             // 
@@ -2188,7 +2193,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(592, 71);
+            this.label4.Location = new System.Drawing.Point(612, 71);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 13);
@@ -2216,7 +2221,7 @@
             // comboBox5
             // 
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(554, 23);
+            this.comboBox5.Location = new System.Drawing.Point(570, 22);
             this.comboBox5.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(34, 21);
@@ -2236,10 +2241,10 @@
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(460, 23);
+            this.comboBox3.Location = new System.Drawing.Point(460, 22);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(87, 21);
+            this.comboBox3.Size = new System.Drawing.Size(106, 21);
             this.comboBox3.TabIndex = 46;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
@@ -2274,7 +2279,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(398, 93);
+            this.label37.Location = new System.Drawing.Point(396, 98);
             this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(60, 13);
@@ -2292,7 +2297,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(398, 71);
+            this.label35.Location = new System.Drawing.Point(394, 71);
             this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(62, 13);
@@ -2310,7 +2315,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(295, 50);
+            this.label34.Location = new System.Drawing.Point(292, 53);
             this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(164, 13);
@@ -2328,7 +2333,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(406, 25);
+            this.label33.Location = new System.Drawing.Point(404, 25);
             this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(52, 13);
@@ -2406,7 +2411,7 @@
             this.textBox107.Location = new System.Drawing.Point(460, 68);
             this.textBox107.Margin = new System.Windows.Forms.Padding(2);
             this.textBox107.Name = "textBox107";
-            this.textBox107.Size = new System.Drawing.Size(128, 20);
+            this.textBox107.Size = new System.Drawing.Size(144, 20);
             this.textBox107.TabIndex = 11;
             // 
             // button13
@@ -2455,7 +2460,17 @@
             this.руководствоПользователяToolStripMenuItem.Text = "Руководство пользователя";
             this.руководствоПользователяToolStripMenuItem.Click += new System.EventHandler(this.руководствоПользователяToolStripMenuItem_Click);
             // 
-            // Form1
+            // dateTimePicker7
+            // 
+            this.dateTimePicker7.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePicker7.Location = new System.Drawing.Point(165, 56);
+            this.dateTimePicker7.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePicker7.Name = "dateTimePicker7";
+            this.dateTimePicker7.Size = new System.Drawing.Size(131, 20);
+            this.dateTimePicker7.TabIndex = 100;
+            this.dateTimePicker7.Value = new System.DateTime(2022, 3, 5, 0, 0, 0, 0);
+            // 
+            // DatabaseViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2466,9 +2481,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
+            this.Name = "DatabaseViewer";
             this.Text = "ПС \"Учет образовательных платных услуг в учреждении образования\"";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage4.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -2711,6 +2725,7 @@
         private System.Windows.Forms.ComboBox comboBox37;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker7;
     }
 }
 

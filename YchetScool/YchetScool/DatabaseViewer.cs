@@ -1,5 +1,4 @@
 ﻿using System;
-using SystemData = System.Data;
 using System.Data;
 using Word = Microsoft.Office.Interop.Word;
 using MySql.Data.MySqlClient;
@@ -30,19 +29,7 @@ namespace YchetScool
             mycon = new MySqlConnection(connect);
         }
 
-        public Autorization Autorization
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void ConnectionDatabaseClick(object sender, EventArgs e)
         {
             try
             {
@@ -50,9 +37,9 @@ namespace YchetScool
                 MessageBox.Show("BD Connect");
 
             }
-            catch (Exception exception)
+            catch 
             {
-                MessageBox.Show($"{exception}: ERROR:341:Connection lost");
+                MessageBox.Show("Connection lost");
             }
             const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
             DataTable patientTable = new DataTable();
@@ -87,7 +74,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView1.DataSource = table;
                 mycon.Close();
@@ -127,7 +114,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView2.DataSource = table;
                 mycon.Close();
@@ -186,7 +173,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView1.DataSource = table;
                 mycon.Close();
@@ -200,17 +187,15 @@ namespace YchetScool
             string val = Convert.ToString(selectedIndex + 1);
             try
             {
-                DialogResult zz = MessageBox.Show("Вы уверены что хотите удалить договор?", "Удаление", MessageBoxButtons.YesNo);
-                if (zz == DialogResult.Yes)
+                DialogResult dialogResult = MessageBox.Show("Вы уверены что хотите удалить договор?", "Удаление", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-
-
                     string script = ($"DELETE FROM student WHERE ID = {value1} ");
                     mycon = new MySqlConnection(connect);
                     mycon.Open();
-                    MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                    SystemData.DataTable table = new SystemData.DataTable();
-                    ms_data.Fill(table);
+                    MySqlDataAdapter msData = new MySqlDataAdapter(script, connect);
+                    DataTable table = new DataTable();
+                    msData.Fill(table);
                     dataGridView1.DataSource = table;
                     mycon.Close();
                 }
@@ -229,7 +214,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView1.DataSource = table;
                 mycon.Close();
@@ -245,7 +230,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView4.DataSource = table;
                 mycon.Close();
@@ -265,7 +250,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView4.DataSource = table;
                 mycon.Close();
@@ -281,7 +266,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView4.DataSource = table;
                 mycon.Close();
@@ -301,7 +286,7 @@ namespace YchetScool
                     mycon = new MySqlConnection(connect);
                     mycon.Open();
                     MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                    SystemData.DataTable table = new SystemData.DataTable();
+                    DataTable table = new DataTable();
                     ms_data.Fill(table);
                     dataGridView2.DataSource = table;
                     mycon.Close();
@@ -324,7 +309,7 @@ namespace YchetScool
                     mycon = new MySqlConnection(connect);
                     mycon.Open();
                     MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                    SystemData.DataTable table = new SystemData.DataTable();
+                    DataTable table = new DataTable();
                     ms_data.Fill(table);
                     dataGridView3.DataSource = table;
                     mycon.Close();
@@ -350,7 +335,7 @@ namespace YchetScool
                     mycon = new MySqlConnection(connect);
                     mycon.Open();
                     MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                    SystemData.DataTable table = new SystemData.DataTable();
+                    DataTable table = new DataTable();
                     ms_data.Fill(table);
                     dataGridView4.DataSource = table;
                     mycon.Close();
@@ -367,7 +352,7 @@ namespace YchetScool
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView1.DataSource = table;
             mycon.Close();
@@ -381,7 +366,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView3.DataSource = table;
                 mycon.Close();
@@ -397,7 +382,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView2.DataSource = table;
                 mycon.Close();
@@ -413,7 +398,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView2.DataSource = table;
                 mycon.Close();
@@ -429,7 +414,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView3.DataSource = table;
                 mycon.Close();
@@ -448,7 +433,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView7.DataSource = table;
                 mycon.Close();
@@ -514,7 +499,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView8.DataSource = table;
                 mycon.Close();
@@ -558,7 +543,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView10.DataSource = table;
                 mycon.Close();
@@ -620,7 +605,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView9.DataSource = table;
                 mycon.Close();
@@ -661,7 +646,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView9.DataSource = table;
                 mycon.Close();
@@ -682,7 +667,7 @@ namespace YchetScool
                     mycon = new MySqlConnection(connect);
                     mycon.Open();
                     MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                    SystemData.DataTable table = new SystemData.DataTable();
+                    DataTable table = new DataTable();
                     ms_data.Fill(table);
                     dataGridView9.DataSource = table;
                     mycon.Close();
@@ -700,7 +685,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView9.DataSource = table;
                 mycon.Close();
@@ -716,7 +701,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView10.DataSource = table;
                 mycon.Close();
@@ -738,7 +723,7 @@ namespace YchetScool
                     mycon = new MySqlConnection(connect);
                     mycon.Open();
                     MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                    SystemData.DataTable table = new SystemData.DataTable();
+                    DataTable table = new DataTable();
                     ms_data.Fill(table);
                     dataGridView10.DataSource = table;
                     mycon.Close();
@@ -758,7 +743,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView4.DataSource = table;
                 mycon.Close();
@@ -775,7 +760,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView8.DataSource = table;
                 mycon.Close();
@@ -796,7 +781,7 @@ namespace YchetScool
                     mycon = new MySqlConnection(connect);
                     mycon.Open();
                     MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                    SystemData.DataTable table = new SystemData.DataTable();
+                    DataTable table = new DataTable();
                     ms_data.Fill(table);
                     dataGridView8.DataSource = table;
                     mycon.Close();
@@ -816,7 +801,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView8.DataSource = table;
                 mycon.Close();
@@ -837,7 +822,7 @@ namespace YchetScool
                     mycon = new MySqlConnection(connect);
                     mycon.Open();
                     MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                    SystemData.DataTable table = new SystemData.DataTable();
+                    DataTable table = new DataTable();
                     ms_data.Fill(table);
                     dataGridView7.DataSource = table;
                     mycon.Close();
@@ -855,7 +840,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView7.DataSource = table;
                 mycon.Close();
@@ -873,7 +858,7 @@ namespace YchetScool
                 mycon = new MySqlConnection(connect);
                 mycon.Open();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-                SystemData.DataTable table = new SystemData.DataTable();
+                DataTable table = new DataTable();
                 ms_data.Fill(table);
                 dataGridView7.DataSource = table;
                 mycon.Close();
@@ -960,19 +945,14 @@ namespace YchetScool
 
         private void textBox118_TextChanged_1(object sender, EventArgs e)
         {
-
-
             string script = ($"SELECT ID_contract as Договор,student.FIO as Ученики,service.Title as Услуга,Date_of_conclusion as Дата,FIO_parents as Родители,Validity_period as Период FROM contract  join Student on  contract.ID_contract = student.ID join service on  contract.ID_contract = service.ID WHERE (((student.FIO)Like \"%" + textBox118.Text + "%\"));");
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data2 = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table2 = new SystemData.DataTable();
+            DataTable table2 = new DataTable();
             ms_data2.Fill(table2);
             dataGridView7.DataSource = table2;
             mycon.Close();
-
-
-
         }
 
         private void textBox119_TextChanged(object sender, EventArgs e)
@@ -981,7 +961,7 @@ namespace YchetScool
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView8.DataSource = table;
             mycon.Close();
@@ -993,7 +973,7 @@ namespace YchetScool
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView9.DataSource = table;
             mycon.Close();
@@ -1005,7 +985,7 @@ namespace YchetScool
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView10.DataSource = table;
             mycon.Close();
@@ -1017,7 +997,7 @@ namespace YchetScool
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView4.DataSource = table;
             mycon.Close();
@@ -1026,13 +1006,11 @@ namespace YchetScool
         private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
         {
             string pablo = dateTimePicker3.Value.ToString("yyyy-MM-dd");
-
-
             string script = ("Select ID_contract as Договор,FIO as Ученики,Title as Услуга,Date_of_conclusion as Дата,FIO_parents as Родители,Validity_period as Период from contract  join Student on  contract.ID_contract = student.ID join service on  contract.ID_contract = service.ID WHERE (((Date_of_conclusion)Like \"%" + pablo + "%\"));");
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView7.DataSource = table;
             mycon.Close();
@@ -1041,13 +1019,11 @@ namespace YchetScool
         private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
         {
             string pablo = dateTimePicker4.Value.ToString("yyyy-MM-dd");
-
-
             string script = ("Select trainingsession.ID_lesson as Номер_занятия,trainingsession.Date as Дата,service.Title as Номер_группы,trainingsession.Subject as Тема,trainingsession.Homework as Домашняя_работа,trainingsession.Cabinet as Кабинет from  trainingsession join service on ID_lesson = service.ID  WHERE (((Date)Like \"%" + pablo + "%\"));");
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView8.DataSource = table;
             mycon.Close();
@@ -1056,13 +1032,11 @@ namespace YchetScool
         private void dateTimePicker5_ValueChanged(object sender, EventArgs e)
         {
             string pablo = dateTimePicker5.Value.ToString("yyyy-MM-dd");
-
-
             string script = ("Select attendance.ID as Номер,student.fio as Номер_ученика,attendance.DATE as Дата,attendance.Attendance as Посещения,attendance.Reason as Причина,trainingsession.subject as Номер_занятия from attendance join student on attendance.ID = student.ID join trainingsession on attendance.ID = trainingsession.ID_lesson WHERE (((attendance.DATE)Like \"%" + pablo + "%\"));");
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView10.DataSource = table;
             mycon.Close();
@@ -1217,7 +1191,6 @@ namespace YchetScool
                     ExcelApp.Cells[i + 1, j + 1] = dataGridView10.Rows[i].Cells[j].Value;
                 }
             }
-            //Вызываем нашу созданную эксельку.
             ExcelApp.Visible = true;
             ExcelApp.UserControl = true;
         }
@@ -1317,7 +1290,7 @@ namespace YchetScool
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView4.DataSource = table;
             mycon.Close();
@@ -1329,15 +1302,10 @@ namespace YchetScool
             mycon = new MySqlConnection(connect);
             mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            SystemData.DataTable table = new SystemData.DataTable();
+            DataTable table = new DataTable();
             ms_data.Fill(table);
             dataGridView1.DataSource = table;
             mycon.Close();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -10,7 +10,7 @@ namespace YchetScool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DatabaseViewer());
+            Application.Run(new Autorization());
         }
     }
 }
