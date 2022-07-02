@@ -10,7 +10,7 @@ namespace YchetScool
     public partial class DatabaseViewer : Form
     {
         private DataTable _table;
-        public MySqlConnection mycon;
+        public MySqlConnection _mycon;
         public MySqlCommand nycon;
         private string _connectData = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
         public DataSet ds;
@@ -31,7 +31,7 @@ namespace YchetScool
 
         private void Initialization() 
         {
-            mycon = new MySqlConnection(_connectData);
+            _mycon = new MySqlConnection(_connectData);
             _table = new DataTable();
         }
 
@@ -39,7 +39,7 @@ namespace YchetScool
         {
             try
             {
-                mycon.Open();
+                _mycon.Open();
                 MessageBox.Show("BD Connect");
             }
             catch 
@@ -368,19 +368,11 @@ namespace YchetScool
                 MSDataFill(script, _connectData, dataGridView8);
                 dataGridView8.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-                DataTable patientTable = new DataTable();
                 MySqlConnection myConnection = new MySqlConnection(connStr1);
                 {
                     MySqlCommand command = new MySqlCommand("SELECT Number_group  FROM  `groups`", myConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable);
-                }
-                DataTable patientTable2 = new DataTable();
-                MySqlConnection myConnection2 = new MySqlConnection(connStr1);
-                {
-                    MySqlCommand command = new MySqlCommand("SELECT Number_group  FROM  `groups`", myConnection);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable2);
+                    adapter.Fill(_table);
                 }
             }
             catch
@@ -398,39 +390,22 @@ namespace YchetScool
                 MSDataFill(script, _connectData, dataGridView10);
                 dataGridView10.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-                DataTable patientTable = new DataTable();
                 MySqlConnection myConnection = new MySqlConnection(connStr1);
                 {
                     MySqlCommand command = new MySqlCommand("SELECT ID,FIO  FROM student", myConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable);
+                    adapter.Fill(_table);
                 }
-                DataTable patientTable2 = new DataTable();
-                MySqlConnection myConnection2 = new MySqlConnection(connStr1);
-                {
-                    MySqlCommand command = new MySqlCommand("SELECT ID,FIO  FROM student", myConnection);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable2);
-                }
-                comboBox17.DataSource = patientTable2;
+                comboBox17.DataSource = _table;
                 comboBox17.DisplayMember = "id";
                 comboBox17.ValueMember = "fio";
-
-                DataTable patientTable3 = new DataTable();
                 MySqlConnection myConnection3 = new MySqlConnection(connStr1);
                 {
                     MySqlCommand command = new MySqlCommand("SELECT ID_lesson,subject  FROM trainingsession", myConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable3);
+                    adapter.Fill(_table);
                 }
-                DataTable patientTable4 = new DataTable();
-                MySqlConnection myConnection4 = new MySqlConnection(connStr1);
-                {
-                    MySqlCommand command = new MySqlCommand("SELECT ID_lesson,subject  FROM trainingsession", myConnection);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable4);
-                }
-                comboBox21.DataSource = patientTable4;
+                comboBox21.DataSource = _table;
                 comboBox21.DisplayMember = "ID_lesson";
                 comboBox21.ValueMember = "subject";
             }
@@ -563,7 +538,6 @@ namespace YchetScool
                 DialogResult zz = MessageBox.Show("Вы уверены что хотите удалить договор?", "Удаление", MessageBoxButtons.YesNo);
                 if (zz == DialogResult.Yes)
                 {
-
                     string script = ($"DELETE FROM trainingsession WHERE ID_lesson = {value8} ");
                     MSDataFill(script, _connectData, dataGridView8);
                 }
@@ -591,7 +565,7 @@ namespace YchetScool
                 {
 
                     string script = ($"DELETE FROM contract WHERE ID_contract = {value7} ");
-                    mycon = new MySqlConnection(_connectData);
+                    _mycon = new MySqlConnection(_connectData);
                     MSDataFill(script, _connectData, dataGridView8);
                 }
             }
@@ -1003,12 +977,12 @@ namespace YchetScool
 
         private void MSDataFill(string script, string connect, DataGridView dataGridView) 
         {
-            mycon = new MySqlConnection(connect);
-            mycon.Open();
+            _mycon = new MySqlConnection(connect);
+            _mycon.Open();
             MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
             ms_data.Fill(_table);
             dataGridView.DataSource = _table;
-            mycon.Close();
+            _mycon.Close();
         }
     }
 }
