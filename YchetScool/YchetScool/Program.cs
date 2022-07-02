@@ -8,6 +8,7 @@ namespace YchetScool
         [STAThread]
         static void Main()
         {
+            //Герман пидор
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Autorization());
