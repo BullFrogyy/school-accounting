@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Data;
 using Word = Microsoft.Office.Interop.Word;
+using Excel = Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
 namespace YchetScool
 {
-
     public partial class DatabaseViewer : Form
     {
         private DataTable _table;
@@ -41,7 +41,6 @@ namespace YchetScool
             {
                 mycon.Open();
                 MessageBox.Show("BD Connect");
-
             }
             catch 
             {
@@ -77,13 +76,7 @@ namespace YchetScool
                 string script = "Select student.ID as Номер,student.FIO as ФИО,student.GenderType as Пол,class.Class as " +
                     "Класс,student.Address as Адрес,student.DateOFBirth as Дата_рождения,student.Email as Почта,student.Benefits as Льготы,student.Phone as" +
                     " Телефон from student join Class on Student.Class = class.ID";
-                mycon = new MySqlConnection(_connectData);
-                mycon.Open();
-                MySqlDataAdapter ms_data = new MySqlDataAdapter(script, _connectData);
-                DataTable table = new DataTable();
-                ms_data.Fill(table);
-                dataGridView1.DataSource = table;
-                mycon.Close();
+                MSDataFill(script, _connectData, dataGridView1);
                 dataGridView1.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
                 DataTable patientTable = new DataTable();
@@ -109,7 +102,6 @@ namespace YchetScool
             {
                 MessageBox.Show("Подключение отсутствует!");
             }
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -131,13 +123,7 @@ namespace YchetScool
             try
             {
                 string script = "Select class.ID as Номер,Teacher.FIO as Классный_руководитель,class.Class as Класс,class.Cabinet as Кабинет from class join Teacher on class.ClaassRoomTeacher = Teacher.ID";
-                mycon = new MySqlConnection(_connectData);
-                mycon.Open();
-                MySqlDataAdapter ms_data = new MySqlDataAdapter(script, _connectData);
-                DataTable table = new DataTable();
-                ms_data.Fill(table);
-                dataGridView3.DataSource = table;
-                mycon.Close();
+                MSDataFill(script, _connectData, dataGridView3);
                 dataGridView3.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
                 DataTable patientTable = new DataTable();
@@ -178,7 +164,6 @@ namespace YchetScool
         private void button6_Click(object sender, EventArgs e)
         {
             int selectedIndex = dataGridView1.SelectedRows[0].Index;
-            string val = Convert.ToString(selectedIndex + 1);
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Вы уверены что хотите удалить договор?", "Удаление", MessageBoxButtons.YesNo);
@@ -190,7 +175,6 @@ namespace YchetScool
 
             }
             catch { MessageBox.Show("Неверно введены данные"); }
-
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -219,7 +203,6 @@ namespace YchetScool
         }
         private void button11_Click_1(object sender, EventArgs e)
         {
-
             try
             {
                 string script = ($"UPDATE service SET Title='{textBox46.Text}',Types='{textBox47.Text}',PricePerDay='{textBox48.Text}'WHERE ID = {value4}  ");
@@ -240,7 +223,6 @@ namespace YchetScool
 
         private void button24_Click(object sender, EventArgs e)
         {
-
             try
             {
                 DialogResult zz = MessageBox.Show("Вы уверены что хотите удалить договор?", "Удаление", MessageBoxButtons.YesNo);
@@ -249,15 +231,12 @@ namespace YchetScool
                     string script = ($"DELETE FROM teacher WHERE ID = {value2} ");
                     MSDataFill(script, _connectData, dataGridView2);
                 }
-
-
             }
             catch { MessageBox.Show("Неверно введены данные"); }
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
-
             try
             {
                 DialogResult zz = MessageBox.Show("Вы уверены что хотите удалить договор?", "Удаление", MessageBoxButtons.YesNo);
@@ -266,19 +245,14 @@ namespace YchetScool
                     string script = ($"DELETE FROM class WHERE ID = {value3} ");
                     MSDataFill(script, _connectData, dataGridView3);
                 }
-
-
             }
             catch { MessageBox.Show("Неверно введены данные"); }
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
-
             try
             {
-
-
                 DialogResult zz = MessageBox.Show("Вы уверены что хотите удалить договор?", "Удаление", MessageBoxButtons.YesNo);
                 if (zz == DialogResult.Yes)
                 {
@@ -288,7 +262,6 @@ namespace YchetScool
 
             }
             catch { MessageBox.Show("Неверно введены данные"); }
-
         }
 
         private void button16_Click(object sender, EventArgs e)
@@ -342,13 +315,7 @@ namespace YchetScool
             try
             {
                 string script = "Select contract.ID_contract as Договор,student.FIO as Ученики,service.Title as Услуга,contract.Date_of_conclusion as Дата,contract.FIO_parents as Родители,contract.Validity_period as Период from contract  join Student on  contract.ID_student = student.ID  join service on  contract.ID_service = service.ID ";
-                mycon = new MySqlConnection(_connectData);
-                mycon.Open();
-                MySqlDataAdapter ms_data = new MySqlDataAdapter(script, _connectData);
-                DataTable table = new DataTable();
-                ms_data.Fill(table);
-                dataGridView7.DataSource = table;
-                mycon.Close();
+                MSDataFill(script, _connectData, dataGridView7);
                 dataGridView7.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
                 DataTable patientTable = new DataTable();
@@ -398,13 +365,7 @@ namespace YchetScool
             try
             {
                 string script = "Select ID_lesson as Номер_занятия,Date as Дата,ID_groups as Номер_группы,Subject as Тема,Homework as Домашняя_работа,Cabinet as Кабинет from  trainingsession ";
-                mycon = new MySqlConnection(_connectData);
-                mycon.Open();
-                MySqlDataAdapter ms_data = new MySqlDataAdapter(script, _connectData);
-                DataTable table = new DataTable();
-                ms_data.Fill(table);
-                dataGridView8.DataSource = table;
-                mycon.Close();
+                MSDataFill(script, _connectData, dataGridView8);
                 dataGridView8.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
                 DataTable patientTable = new DataTable();
@@ -434,13 +395,7 @@ namespace YchetScool
             try
             {
                 string script = "Select attendance.ID as Номер,student.fio as Номер_ученика,attendance.DATE as Дата,attendance.Attendance as Посещения,attendance.Reason as Причина,trainingsession.subject as Номер_занятия from attendance join student on attendance.ID_student = student.ID join trainingsession on attendance.ID_traning = trainingsession.ID_lesson  ";
-                mycon = new MySqlConnection(_connectData);
-                mycon.Open();
-                MySqlDataAdapter ms_data = new MySqlDataAdapter(script, _connectData);
-                DataTable table = new DataTable();
-                ms_data.Fill(table);
-                dataGridView10.DataSource = table;
-                mycon.Close();
+                MSDataFill(script, _connectData, dataGridView10);
                 dataGridView10.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
                 DataTable patientTable = new DataTable();
@@ -488,13 +443,7 @@ namespace YchetScool
             {
                 //string script = "Select Number_group as Номер_группы,Teacher as Учитель,ID_Service as Номер_услуги from `groups`";
                 string script = "Select Number_group as Номер_группы,FIO as Учитель,Title as Номер_услуги from `groups` join Teacher on  groups.Teacher = Teacher.ID join service on  groups.ID_Service = service.ID ";
-                mycon = new MySqlConnection(_connectData);
-                mycon.Open();
-                MySqlDataAdapter ms_data = new MySqlDataAdapter(script, _connectData);
-                DataTable table = new DataTable();
-                ms_data.Fill(table);
-                dataGridView9.DataSource = table;
-                mycon.Close();
+                MSDataFill(script, _connectData, dataGridView9);
                 dataGridView9.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
                 DataTable patientTable = new DataTable();
@@ -934,11 +883,11 @@ namespace YchetScool
 
         private void button14_Click_1(object sender, EventArgs e)
         {
-            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
-            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
+            Excel.Application ExcelApp = new Excel.Application();
+            Excel.Workbook ExcelWorkBook;
+            Excel.Worksheet ExcelWorkSheet;
             ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
+            ExcelWorkSheet = (Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
 
             for (int i = 0; i < dataGridView10.Rows.Count; i++)
             {
