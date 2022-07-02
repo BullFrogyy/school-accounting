@@ -12,7 +12,7 @@ namespace YchetScool
         private DataTable _table;
         public MySqlConnection _mycon;
         public MySqlCommand nycon;
-        private string _connectData = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
+        private string _connectData = "Server=f0692681.xsph.ru;Database=f0692681_ychet;Uid=f0692681_user;pwd=Denis";
         public DataSet ds;
         public string value1;
         public string value2;
@@ -28,11 +28,36 @@ namespace YchetScool
             InitializeComponent();
             Initialization();
         }
-
-        private void Initialization() 
+        private void Initialization()
         {
-            _mycon = new MySqlConnection(_connectData);
+            _mycon = GetDBConnection();
             _table = new DataTable();
+        }
+        public static MySqlConnection GetDBConnection()
+        {
+            string host = "f0692681.xsph.ru";
+            int port = 3306;
+            string database = "f0692681_ychet";
+            string username = "f0692681_user";
+            string password = "Denis";
+            try
+            {
+                return GetDBConnection(host, port, database, username, password);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            return null;
+        }
+        public static MySqlConnection GetDBConnection(string host, int port, string database, string username, string password)
+        {
+            String connString = "Server=" + host + ";Database=" + database
+                + ";port=" + port + ";User Id=" + username + ";password=" + password;
+
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            return conn;
         }
 
         private void ConnectionDatabaseClick(object sender, EventArgs e)
@@ -46,25 +71,22 @@ namespace YchetScool
             {
                 MessageBox.Show("Connection lost");
             }
-            const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-            DataTable patientTable = new DataTable();
-            MySqlConnection myConnection = new MySqlConnection(connStr1);
+            MySqlConnection myConnection = GetDBConnection();
             {
                 MySqlCommand command = new MySqlCommand("SELECT ID,FIO  FROM student", myConnection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                adapter.Fill(patientTable);
+                adapter.Fill(_table);
             }
-            comboBox1.DataSource = patientTable;
+            comboBox1.DataSource = _table;
             comboBox1.DisplayMember = "fio";
             comboBox1.ValueMember = "id";
-            DataTable patientTable2 = new DataTable();
-            MySqlConnection myConnection3 = new MySqlConnection(connStr1);
+            MySqlConnection myConnection3 = GetDBConnection();
             {
                 MySqlCommand command = new MySqlCommand("SELECT ID,Title  FROM service", myConnection3);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                adapter.Fill(patientTable2);
+                adapter.Fill(_table);
             }
-            comboBox3.DataSource = patientTable2;
+            comboBox3.DataSource = _table;
             comboBox3.DisplayMember = "Title";
             comboBox3.ValueMember = "ID";
         }
@@ -78,22 +100,13 @@ namespace YchetScool
                     " Телефон from student join Class on Student.Class = class.ID";
                 MSDataFill(script, _connectData, dataGridView1);
                 dataGridView1.Columns[0].Visible = false;
-                const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-                DataTable patientTable = new DataTable();
-                MySqlConnection myConnection = new MySqlConnection(connStr1);
+                MySqlConnection myConnection = GetDBConnection();
                 {
                     MySqlCommand command = new MySqlCommand("SELECT ID,Class  FROM Class", myConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable);
+                    adapter.Fill(_table);
                 }
-                DataTable patientTable2 = new DataTable();
-                MySqlConnection myConnection2 = new MySqlConnection(connStr1);
-                {
-                    MySqlCommand command = new MySqlCommand("SELECT ID,Class  FROM Class", myConnection);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable2);
-                }
-                comboBox25.DataSource = patientTable2;
+                comboBox25.DataSource = _table;
                 comboBox25.DisplayMember = "id";
                 comboBox25.ValueMember = "Class";
 
@@ -314,49 +327,32 @@ namespace YchetScool
         {
             try
             {
-                string script = "Select contract.ID_contract as Договор,student.FIO as Ученики,service.Title as Услуга,contract.Date_of_conclusion as Дата,contract.FIO_parents as Родители,contract.Validity_period as Период from contract  join Student on  contract.ID_student = student.ID  join service on  contract.ID_service = service.ID ";
+                //Здесь жопа отваливается
+                string script = "Select contract.ID_contract as Договор,student.FIO as Ученики,service.Title as Услуга,contract.Date_of_conclusion as Дата,contract.FIO_parents as Родители,contract.Validity_period as Период from `contract` join `Student` on contract.ID_student = student.ID  join `service` on contract.ID_service = service.ID ";
                 MSDataFill(script, _connectData, dataGridView7);
                 dataGridView7.Columns[0].Visible = false;
-                const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-                DataTable patientTable = new DataTable();
-                MySqlConnection myConnection = new MySqlConnection(connStr1);
+                MySqlConnection myConnection = GetDBConnection();
                 {
                     MySqlCommand command = new MySqlCommand("SELECT ID,FIO  FROM student", myConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable);
+                    adapter.Fill(_table);
                 }
-
-                DataTable patientTable2 = new DataTable();
-                MySqlConnection myConnection2 = new MySqlConnection(connStr1);
-                {
-                    MySqlCommand command = new MySqlCommand("SELECT ID,FIO  FROM student", myConnection);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable2);
-                }
-                comboBox8.DataSource = patientTable2;
+                comboBox8.DataSource = _table;
                 comboBox8.DisplayMember = "id";
                 comboBox8.ValueMember = "fio";
-                DataTable patientTable3 = new DataTable();
-                MySqlConnection myConnection3 = new MySqlConnection(connStr1);
+                MySqlConnection myConnection3 = GetDBConnection();
                 {
-                    MySqlCommand command = new MySqlCommand("SELECT ID,Title  FROM service", myConnection);
+                    MySqlCommand command = new MySqlCommand("SELECT ID,Title  FROM service", myConnection3);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable3);
+                    adapter.Fill(_table);
                 }
-                DataTable patientTable4 = new DataTable();
-                MySqlConnection myConnection4 = new MySqlConnection(connStr1);
-                {
-                    MySqlCommand command = new MySqlCommand("SELECT ID,Title  FROM service", myConnection);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(patientTable4);
-                }
-                comboBox12.DataSource = patientTable4;
+                comboBox12.DataSource = _table;
                 comboBox12.DisplayMember = "id";
                 comboBox12.ValueMember = "Title";
             }
-            catch
+            catch(Exception exeption)
             {
-                MessageBox.Show("Подключение отсутствует");
+                MessageBox.Show("Подключение отсутствует" + exeption);
             }
         }
 
@@ -367,8 +363,7 @@ namespace YchetScool
                 string script = "Select ID_lesson as Номер_занятия,Date as Дата,ID_groups as Номер_группы,Subject as Тема,Homework as Домашняя_работа,Cabinet as Кабинет from  trainingsession ";
                 MSDataFill(script, _connectData, dataGridView8);
                 dataGridView8.Columns[0].Visible = false;
-                const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-                MySqlConnection myConnection = new MySqlConnection(connStr1);
+                MySqlConnection myConnection = GetDBConnection();
                 {
                     MySqlCommand command = new MySqlCommand("SELECT Number_group  FROM  `groups`", myConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -390,7 +385,7 @@ namespace YchetScool
                 MSDataFill(script, _connectData, dataGridView10);
                 dataGridView10.Columns[0].Visible = false;
                 const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-                MySqlConnection myConnection = new MySqlConnection(connStr1);
+                MySqlConnection myConnection = GetDBConnection();
                 {
                     MySqlCommand command = new MySqlCommand("SELECT ID,FIO  FROM student", myConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -399,7 +394,7 @@ namespace YchetScool
                 comboBox17.DataSource = _table;
                 comboBox17.DisplayMember = "id";
                 comboBox17.ValueMember = "fio";
-                MySqlConnection myConnection3 = new MySqlConnection(connStr1);
+                MySqlConnection myConnection3 = GetDBConnection();
                 {
                     MySqlCommand command = new MySqlCommand("SELECT ID_lesson,subject  FROM trainingsession", myConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -416,30 +411,25 @@ namespace YchetScool
         {
             try
             {
-                //string script = "Select Number_group as Номер_группы,Teacher as Учитель,ID_Service as Номер_услуги from `groups`";
                 string script = "Select Number_group as Номер_группы,FIO as Учитель,Title as Номер_услуги from `groups` join Teacher on  groups.Teacher = Teacher.ID join service on  groups.ID_Service = service.ID ";
                 MSDataFill(script, _connectData, dataGridView9);
                 dataGridView9.Columns[0].Visible = false;
-                const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-                DataTable patientTable = new DataTable();
-                DataTable patientTable3 = new DataTable();
-                MySqlConnection myConnection3 = new MySqlConnection(connStr1);
+                MySqlConnection myConnection3 = GetDBConnection();
                 {
                     MySqlCommand command3 = new MySqlCommand("SELECT ID,Title  FROM service", myConnection3);
                     MySqlDataAdapter adapter3 = new MySqlDataAdapter(command3);
-                    adapter3.Fill(patientTable3);
+                    adapter3.Fill(_table);
                 }
-                comboBox33.DataSource = patientTable3;
+                comboBox33.DataSource = _table;
                 comboBox33.DisplayMember = "id";
                 comboBox33.ValueMember = "Title";
-                DataTable patientTable4 = new DataTable();
-                MySqlConnection myConnection4 = new MySqlConnection(connStr1);
+                MySqlConnection myConnection4 = GetDBConnection();
                 {
                     MySqlCommand command4 = new MySqlCommand("SELECT ID,FIO  FROM Teacher", myConnection4);
                     MySqlDataAdapter adapter4 = new MySqlDataAdapter(command4);
-                    adapter4.Fill(patientTable4);
+                    adapter4.Fill(_table);
                 }
-                comboBox29.DataSource = patientTable4;
+                comboBox29.DataSource = _table;
                 comboBox29.DisplayMember = "id";
                 comboBox29.ValueMember = "fio";
 
@@ -658,15 +648,13 @@ namespace YchetScool
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-            DataTable patientTable = new DataTable();
-            MySqlConnection myConnection = new MySqlConnection(connStr1);
+            MySqlConnection myConnection = GetDBConnection();
             {
                 MySqlCommand command = new MySqlCommand($"SELECT ID  FROM student WHERE FIO='{comboBox1.Text}'", myConnection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                adapter.Fill(patientTable);
+                adapter.Fill(_table);
             }
-            comboBox4.DataSource = patientTable;
+            comboBox4.DataSource = _table;
             comboBox4.DisplayMember = "id";
             comboBox4.ValueMember = "id";
         }
@@ -723,45 +711,39 @@ namespace YchetScool
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-            DataTable patientTable = new DataTable();
-            MySqlConnection myConnection = new MySqlConnection(connStr1);
+            MySqlConnection myConnection = GetDBConnection();
             {
                 MySqlCommand command = new MySqlCommand($"SELECT ID  FROM service WHERE Title='{comboBox3.Text}'", myConnection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                adapter.Fill(patientTable);
+                adapter.Fill(_table);
             }
-            comboBox5.DataSource = patientTable;
+            comboBox5.DataSource = _table;
             comboBox5.DisplayMember = "id";
             comboBox5.ValueMember = "id";
         }
 
         private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-            DataTable patientTable = new DataTable();
-            MySqlConnection myConnection = new MySqlConnection(connStr1);
+            MySqlConnection myConnection = GetDBConnection();
             {
                 MySqlCommand command = new MySqlCommand($"SELECT FIO  FROM student WHERE ID='{comboBox8.Text}'", myConnection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                adapter.Fill(patientTable);
+                adapter.Fill(_table);
             }
-            comboBox9.DataSource = patientTable;
+            comboBox9.DataSource = _table;
             comboBox9.DisplayMember = "fio";
             comboBox9.ValueMember = "fio";
         }
 
         private void comboBox12_SelectedIndexChanged(object sender, EventArgs e)
         {
-            const string connStr1 = "Server=localhost;Database=YCHET;Uid=root;pwd=12345;charset=utf8";
-            DataTable patientTable = new DataTable();
-            MySqlConnection myConnection = new MySqlConnection(connStr1);
+            MySqlConnection myConnection = GetDBConnection();
             {
                 MySqlCommand command = new MySqlCommand($"SELECT Title  FROM service WHERE ID='{comboBox12.Text}'", myConnection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                adapter.Fill(patientTable);
+                adapter.Fill(_table);
             }
-            comboBox13.DataSource = patientTable;
+            comboBox13.DataSource = _table;
             comboBox13.DisplayMember = "Title";
             comboBox13.ValueMember = "Title";
         }
@@ -975,14 +957,19 @@ namespace YchetScool
             MSDataFill(script, _connectData, dataGridView1);
         }
 
-        private void MSDataFill(string script, string connect, DataGridView dataGridView) 
+        private void MSDataFill(string script, string connect, DataGridView dataGridView)
         {
-            _mycon = new MySqlConnection(connect);
-            _mycon.Open();
-            MySqlDataAdapter ms_data = new MySqlDataAdapter(script, connect);
-            ms_data.Fill(_table);
-            dataGridView.DataSource = _table;
-            _mycon.Close();
+            try
+            {
+                MySqlDataAdapter ms_data = new MySqlDataAdapter(script, _mycon);
+                ms_data.Fill(_table);
+                dataGridView.DataSource = _table;
+                _mycon.Close();
+            }
+            catch(Exception exeption) 
+            {
+                MessageBox.Show("Жопа отвалилась" + exeption);
+            }
         }
     }
 }
