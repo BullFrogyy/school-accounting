@@ -11,7 +11,7 @@ namespace YchetScool
     {
         private DataTable _table;
         public MySqlConnection _mycon;
-        public MySqlCommand nycon;
+        public MySqlCommand _mycom;
         private string _connectData = "Server=f0692681.xsph.ru;Database=f0692681_ychet;Uid=f0692681_user;pwd=Denis";
         public DataSet ds;
         public string value1;
@@ -35,11 +35,11 @@ namespace YchetScool
         }
         public static MySqlConnection GetDBConnection()
         {
-            string host = "f0692681.xsph.ru";
+            string host = "185.51.121.93";
             int port = 3306;
-            string database = "f0692681_ychet";
-            string username = "f0692681_user";
-            string password = "Denis";
+            string database = "ychet2";
+            string username = "root";
+            string password = "MadDen";
             try
             {
                 return GetDBConnection(host, port, database, username, password);
@@ -55,9 +55,9 @@ namespace YchetScool
             String connString = "Server=" + host + ";Database=" + database
                 + ";port=" + port + ";User Id=" + username + ";password=" + password;
 
-            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlConnection SqlConnection = new MySqlConnection(connString);
 
-            return conn;
+            return SqlConnection;
         }
 
         private void ConnectionDatabaseClick(object sender, EventArgs e)
@@ -777,25 +777,34 @@ namespace YchetScool
                 ms_data.Fill(_table);
                 dataGridView.DataSource = _table;
                 _mycon.Close();
+                _table.Clear();
             }
             catch(Exception exeption) 
             {
-                MessageBox.Show("Жопа отвалилась" + exeption);
+                MessageBox.Show("Жопа отвалилась " + exeption);
             }
         }
         private void MSDataAdapterFill(string cmdText, ComboBox comboBox = null, DataTable dataTable = null, string displayNubmer = null, string valueNumber = null)
         {
-            MySqlConnection myConnection = GetDBConnection();
+            try
             {
-                MySqlCommand command = new MySqlCommand(cmdText, _mycon);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                adapter.Fill(_table);
+                MySqlConnection myConnection = GetDBConnection();
+                {
+                    MySqlCommand command = new MySqlCommand(cmdText, _mycon);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(_table);
+                    _table.Clear();
+                }
+                if (comboBox != null)
+                {
+                    comboBox.DataSource = dataTable;
+                    comboBox.DisplayMember = displayNubmer;
+                    comboBox.ValueMember = valueNumber;
+                }
             }
-            if (comboBox != null) 
+            catch (Exception exeption)
             {
-                comboBox.DataSource = dataTable;
-                comboBox.DisplayMember = displayNubmer;
-                comboBox.ValueMember = valueNumber;
+                MessageBox.Show("Жопа отвалилась у адаптера " + exeption);
             }
         }
     }
