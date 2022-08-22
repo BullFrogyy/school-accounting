@@ -803,6 +803,7 @@ namespace YchetScool
                     comboBox.DisplayMember = displayNubmer;
                     comboBox.ValueMember = valueNumber;
                 }
+                //
             }
             catch (Exception exeption)
             {
