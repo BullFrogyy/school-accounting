@@ -773,11 +773,12 @@ namespace YchetScool
         {
             try
             {
+                _table = new DataTable();
                 MySqlDataAdapter ms_data = new MySqlDataAdapter(script, _mycon);
                 ms_data.Fill(_table);
                 dataGridView.DataSource = _table;
                 _mycon.Close();
-                _table.Clear();
+                //_table.Clear();
             }
             catch(Exception exeption) 
             {
@@ -790,10 +791,11 @@ namespace YchetScool
             {
                 MySqlConnection myConnection = GetDBConnection();
                 {
+                    _table = new DataTable();
                     MySqlCommand command = new MySqlCommand(cmdText, _mycon);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     adapter.Fill(_table);
-                    _table.Clear();
+                    //_table.Clear();
                 }
                 if (comboBox != null)
                 {
